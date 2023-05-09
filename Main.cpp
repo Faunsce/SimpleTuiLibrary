@@ -8,7 +8,8 @@
 
 int main()
 {
-	swt::Window window(std::make_pair<int, int>(30, 40));
+	setlocale(LC_ALL, "en-US");
+	swt::Window window(50, 50);
 	window.modifyInfo(L"bongus");
 	while (true)
 	{

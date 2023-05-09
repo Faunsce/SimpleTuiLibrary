@@ -10,19 +10,18 @@ namespace swt
 	class Window
 	{
 	private:
-		int displayX;
-		int displayY;
-		std::vector <std::vector<wchar_t>> displayWindow;
-		std::wstring displayData;
+		typedef std::vector<wchar_t> charVector;
+		typedef std::vector<Window::charVector> charGrid;
+		Window::charGrid elementGrid;
+
 	public:
-		Window(std::pair<int, int> dimensions);
+		Window(int displayWidth, int displayHeight);
 		~Window();
 		void updateScreen();
 		void modifyInfo(std::wstring message);
 	private:
 		void clearScreen() {std::wcout << L"\x1b[2J\x1b[H";};
 	};
-
 }
 
 
@@ -38,4 +37,10 @@ Output
 - Provide functionality to determine spacing ratios between sections of display'd elements
 - Be able to display simple data sets (vectors of int/char/float)
 - Allow user input to be filtered into display
+*/
+
+/*
+╔═╗
+║ ║
+╚═╝
 */
