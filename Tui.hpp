@@ -20,6 +20,7 @@ namespace swt
 		void updateScreen();
 		void modifyInfo(std::wstring message);
 	private:
+		void addBorders(Window::charGrid& grid);
 		void clearScreen() {std::wcout << L"\x1b[2J\x1b[H";};
 	};
 }

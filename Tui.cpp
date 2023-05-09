@@ -21,20 +21,7 @@ namespace swt
 		this->clearScreen();
 		Window::charGrid data = this->elementGrid;
 
-		
-		data.insert(data.begin(), Window::charVector(data[0].size(), L'═'));
-		data.emplace_back(Window::charVector(data[0].size(), L'═'));
-
-		for (auto& row : data)
-		{
-			row.insert(row.begin(), L'═');
-			row.emplace_back(L'═');
-		}
-
-		data.front().front() = L'╔';
-		data.front().back() = L'╗';
-		data.back().front() = L'╚';
-		data.back().back() = L'╝';
+		this->addBorders(data);
 
 		for (const auto& line : data)
 		{
@@ -44,6 +31,23 @@ namespace swt
 			}
 			std::wcout << L'\n';
 		}
+	}
+	
+	void Window::addBorders(Window::charGrid& grid)
+	{
+		grid.insert(grid.begin(), Window::charVector(grid[0].size(), L'═'));
+		grid.emplace_back(Window::charVector(grid[0].size(), L'═'));
+
+		for (auto& row : grid)
+		{
+			row.insert(row.begin(), L'═');
+			row.emplace_back(L'═');
+		}
+
+		grid.front().front() = L'╔';
+		grid.front().back() = L'╗';
+		grid.back().front() = L'╚';
+		grid.back().back() = L'╝';
 	}
 
 	void Window::modifyInfo(std::wstring message)
@@ -61,5 +65,7 @@ namespace swt
 			}
 		}
 	}
+
+	void Window::
 
 }
