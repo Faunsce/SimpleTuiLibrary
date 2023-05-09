@@ -13,14 +13,14 @@ namespace swt
 		typedef std::vector<wchar_t> charVector;
 		typedef std::vector<Window::charVector> charGrid;
 		Window::charGrid elementGrid;
-
+		Window::charGrid displayGrid;
 	public:
 		Window(int displayWidth, int displayHeight);
 		~Window();
 		void updateScreen();
 		void modifyInfo(std::wstring message);
 	private:
-		void addBorders(Window::charGrid& grid);
+		Window::charGrid addBorders(Window::charGrid grid);
 		void clearScreen() {std::wcout << L"\x1b[2J\x1b[H";};
 	};
 }

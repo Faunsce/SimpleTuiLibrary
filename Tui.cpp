@@ -19,11 +19,8 @@ namespace swt
 	void Window::updateScreen()
 	{
 		this->clearScreen();
-		Window::charGrid data = this->elementGrid;
 
-		this->addBorders(data);
-
-		for (const auto& line : data)
+		for (const auto& line : this->displayGrid)
 		{
 			for (const auto& element : line)
 			{
@@ -33,7 +30,7 @@ namespace swt
 		}
 	}
 	
-	void Window::addBorders(Window::charGrid& grid)
+	Window::charGrid Window::addBorders(Window::charGrid grid)
 	{
 		grid.insert(grid.begin(), Window::charVector(grid[0].size(), L'═'));
 		grid.emplace_back(Window::charVector(grid[0].size(), L'═'));
@@ -48,6 +45,8 @@ namespace swt
 		grid.front().back() = L'╗';
 		grid.back().front() = L'╚';
 		grid.back().back() = L'╝';
+
+		return grid;
 	}
 
 	void Window::modifyInfo(std::wstring message)
@@ -58,14 +57,13 @@ namespace swt
 			{
 				if (message.empty())
 				{
+					this->displayGrid = this->addBorders(this->elementGrid);
 					return;
 				}
-				element = message.back();
-				message.pop_back();
+				element = message.front();
+				message.erase(message.begin());
+				message.shrink_to_fit();
 			}
-		}
+		}		
 	}
-
-	void Window::
-
 }
